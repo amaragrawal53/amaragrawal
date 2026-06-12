@@ -60,7 +60,7 @@ document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
 });
 
-// Typing effect for hero title (optional enhancement)
+// Typing effect for hero title
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.textContent = '';
@@ -78,13 +78,139 @@ function typeWriter(element, text, speed = 100) {
 
 // Initialize typing effect when page loads
 window.addEventListener('load', () => {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const originalText = heroTitle.textContent;
-        // Uncomment the line below to enable typing effect
-        // typeWriter(heroTitle, originalText, 80);
+    const typingText = document.querySelector('.typing-text');
+    if (typingText) {
+        typeWriter(typingText, 'Amar Agrawal', 80);
     }
 });
+
+// AI Chatbot functionality
+const chatbotToggle = document.getElementById('chatbot-toggle');
+const chatbotContainer = document.getElementById('chatbot-container');
+const chatbotClose = document.getElementById('chatbot-close');
+const chatbotInput = document.getElementById('chatbot-input');
+const chatbotSend = document.getElementById('chatbot-send');
+const chatbotMessages = document.getElementById('chatbot-messages');
+
+// Chatbot responses
+const aiResponses = {
+    'skills': 'Amar has expertise in Robot Framework, Selenium WebDriver, Python, Core Java, API Testing, Jenkins, CI/CD, Docker, Kubernetes, AWS, and AI-driven testing with MCP Servers and BMAD Framework.',
+    'experience': 'Amar has 11+ years of experience in test automation, currently working as Lead QA Automation Engineer at Qualys. Previously at Cerence Services and Harman Connected Services.',
+    'projects': 'Amar architected an autonomous QA Orchestrator Agent using BMAD framework, built comprehensive automation frameworks, and developed centralized dashboards for build tracking.',
+    'ai': 'Amar specializes in AI-driven testing, having built autonomous QA agents, MCP server integrations, and intelligent test generation systems.',
+    'contact': 'You can reach Amar at amar.agrawal2087@gmail.com or +91 9699390905. Connect on LinkedIn: linkedin.com/in/amar-agrawal',
+    'default': 'I can help you learn about Amar\'s skills, experience, projects, or how to contact him. What would you like to know?'
+};
+
+function getAIResponse(message) {
+    const lowerMessage = message.toLowerCase();
+    
+    if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech')) {
+        return aiResponses.skills;
+    } else if (lowerMessage.includes('experience') || lowerMessage.includes('work') || lowerMessage.includes('job')) {
+        return aiResponses.experience;
+    } else if (lowerMessage.includes('project') || lowerMessage.includes('achievement') || lowerMessage.includes('work')) {
+        return aiResponses.projects;
+    } else if (lowerMessage.includes('ai') || lowerMessage.includes('artificial') || lowerMessage.includes('autonomous')) {
+        return aiResponses.ai;
+    } else if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone')) {
+        return aiResponses.contact;
+    } else {
+        return aiResponses.default;
+    }
+}
+
+function addMessage(message, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+    
+    const icon = document.createElement('i');
+    icon.className = isUser ? 'fas fa-user' : 'fas fa-robot';
+    
+    const text = document.createElement('p');
+    text.textContent = message;
+    
+    messageDiv.appendChild(icon);
+    messageDiv.appendChild(text);
+    
+    chatbotMessages.appendChild(messageDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+function sendMessage() {
+    const message = chatbotInput.value.trim();
+    if (message) {
+        addMessage(message, true);
+        chatbotInput.value = '';
+        
+        // Simulate AI response delay
+        setTimeout(() => {
+            const response = getAIResponse(message);
+            addMessage(response);
+        }, 1000);
+    }
+}
+
+// Chatbot event listeners
+chatbotToggle.addEventListener('click', () => {
+    chatbotContainer.classList.toggle('active');
+});
+
+chatbotClose.addEventListener('click', () => {
+    chatbotContainer.classList.remove('active');
+});
+
+chatbotSend.addEventListener('click', sendMessage);
+
+chatbotInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// Close chatbot when clicking outside
+document.addEventListener('click', (e) => {
+    if (!chatbotContainer.contains(e.target) && !chatbotToggle.contains(e.target)) {
+        chatbotContainer.classList.remove('active');
+    }
+});
+
+// Particle effect for hero section
+function createParticles() {
+    const particlesContainer = document.getElementById('particles-js');
+    if (!particlesContainer) return;
+    
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.cssText = `
+            position: absolute;
+            width: ${Math.random() * 4 + 1}px;
+            height: ${Math.random() * 4 + 1}px;
+            background: rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2});
+            border-radius: 50%;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation: float ${Math.random() * 10 + 5}s linear infinite;
+        `;
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Add floating animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes float {
+        0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize particles on load
+window.addEventListener('load', createParticles);
 
 // Form submission handling
 const contactForm = document.querySelector('.contact-form form');

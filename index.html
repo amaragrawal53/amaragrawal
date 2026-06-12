@@ -52,9 +52,16 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-particles" id="particles-js"></div>
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">Amar Agrawal</h1>
+                <div class="ai-badge">
+                    <i class="fas fa-robot"></i>
+                    <span>AI-Powered Testing Expert</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="typing-text" id="typing-text">Amar Agrawal</span>
+                </h1>
                 <h2 class="hero-subtitle">Lead SDET | AI-Driven Testing | Test Automation Architect</h2>
                 <p class="hero-description">
                     Results-driven Lead QA Automation Engineer with 11+ years of experience in test automation, 
@@ -62,8 +69,14 @@
                     API automation, and CI/CD pipelines.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="Amar_Agrawal_Resume.pdf" class="btn btn-secondary" download>Download Resume</a>
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-comment-dots"></i>
+                        Get In Touch
+                    </a>
+                    <a href="Amar_Agrawal_Resume.pdf" class="btn btn-secondary" download>
+                        <i class="fas fa-download"></i>
+                        Download Resume
+                    </a>
                 </div>
                 <div class="hero-social">
                     <a href="https://www.linkedin.com/in/amar-agrawal" target="_blank" class="social-link">
@@ -79,7 +92,12 @@
             </div>
             <div class="hero-image">
                 <div class="hero-avatar">
-                    <i class="fas fa-user-tie"></i>
+                    <div class="ai-orbit">
+                        <i class="fas fa-brain ai-core"></i>
+                        <i class="fas fa-cog orbit-1"></i>
+                        <i class="fas fa-code orbit-2"></i>
+                        <i class="fas fa-robot orbit-3"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -343,6 +361,37 @@
             </div>
         </div>
     </section>
+
+    <!-- AI Chatbot -->
+    <div class="ai-chatbot" id="ai-chatbot">
+        <div class="chatbot-toggle" id="chatbot-toggle">
+            <i class="fas fa-robot"></i>
+            <span class="chat-badge">AI</span>
+        </div>
+        <div class="chatbot-container" id="chatbot-container">
+            <div class="chatbot-header">
+                <div class="chatbot-title">
+                    <i class="fas fa-brain"></i>
+                    <span>AI Assistant</span>
+                </div>
+                <button class="chatbot-close" id="chatbot-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message ai-message">
+                    <i class="fas fa-robot"></i>
+                    <p>Hello! I'm Amar's AI assistant. I can help you learn about his experience in test automation, AI-driven testing, and quality engineering. What would you like to know?</p>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input" placeholder="Ask about Amar's skills, experience, or projects...">
+                <button id="chatbot-send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
